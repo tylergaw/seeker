@@ -2,26 +2,38 @@ import type { FC } from "react";
 import type { Photo, Video } from "pexels";
 import Link from "next/link";
 import Image from "next/image";
-import { getImgDimensions } from "@util/ui";
+import { random } from "lodash";
+
+import { getImgDimensionsFromUrl } from "@util/ui";
 import styles from "./style.module.css";
 
-const PhotoImg: FC<{ photo: Photo }> = ({ photo }) => {
-  const { width, height } = getImgDimensions(photo.src.medium);
+const PhotoGraphic: FC<{ photo: Photo }> = ({ photo }) => {
+  const { width = 300, height = 250 } = getImgDimensionsFromUrl(
+    photo.src.medium,
+  );
   return (
     <Image
       src={photo.src.large}
       alt={photo.alt || ""}
-      width={width}
-      height={height}
+      width={width - random(15, 75)}
+      height={height + random(5, 85)}
     />
   );
 };
 
-const VideoImg: FC<{ video: Video }> = ({ video }) => {
-  const imgUrl = new URL(video.image);
-  imgUrl.searchParams.set("h", "350");
-  imgUrl.searchParams.delete("w");
-  return <Image src={imgUrl.toString()} alt={""} width={350} height={350} />;
+const VideoGraphic: FC<{ video: Video }> = ({ video }) => {
+  const sdVideos = video.video_files
+    .filter((video) => video.quality === "sd")
+    .sort((a, b) => (a.width || 1) - (b.width || 2));
+  const thumb = sdVideos[1];
+  const width = (thumb.width || 350) + random(10, 90);
+  const height = (thumb.height || 200) - random(7, 45);
+
+  return (
+    <video autoPlay muted loop playsInline width={width} height={height}>
+      <source src={thumb.link} type={thumb.file_type} />
+    </video>
+  );
 };
 
 const ItemList: FC<{ items: Array<Photo | Video> }> = ({ items }) => {
@@ -33,8 +45,8 @@ const ItemList: FC<{ items: Array<Photo | Video> }> = ({ items }) => {
 
         return (
           <Link className={styles.item} href={`/${item.id}`} key={item.id}>
-            {isPhoto && <PhotoImg photo={item as Photo} />}
-            {isVideo && <VideoImg video={item as Video} />}
+            {isPhoto && <PhotoGraphic photo={item as Photo} />}
+            {isVideo && <VideoGraphic video={item as Video} />}
           </Link>
         );
       })}

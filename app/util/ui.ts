@@ -4,7 +4,7 @@ interface ImgDimensions {
 }
 
 // Note: The defaults here are magic numbers.
-export const getImgDimensions = (
+export const getImgDimensionsFromUrl = (
   url: string,
   widthDefault: number = 350,
   heightDefault: number = 350,
