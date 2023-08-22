@@ -1,34 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Seeker
 
-## Getting Started
+Find your next thing at [hide-and-go-seeker.vercel.app](https://hide-and-go-seeker.vercel.app/).
 
-First, run the development server:
+## Create your own
+
+You can host your own version of this site on Vercel. Note that you will need a valid [Pexels API](https://www.pexels.com/api/) key.
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftylergaw%2Fseeker&env=PEXELS_API_KEY&envDescription=Pexels%20API%20key&envLink=https%3A%2F%2Fwww.pexels.com%2Fapi%2F)
+
+## Technology overview
+
+- This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
+- Hosted on Vercel
+- npm preferred (we ignore all other lock files)
+
+## Local development
+
+**Install dependencies**
+
+```bash
+npm i
+```
+
+**Run development server**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The site will be available at [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Hosted on Vercel. All code merged into `main` is deployed to production.
 
-## Learn More
+All pull requests automatically have a preview deploy created.
 
-To learn more about Next.js, take a look at the following resources:
+## Code formatting
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project uses Git hooks via husky and lint-staged to format any changed files with Prettier. We follow the [recommended setup](https://prettier.io/docs/en/install#git-hooks).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+If you ever need to manually format all code with prettier, run:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+npm run prettier
+```

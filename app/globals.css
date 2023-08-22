@@ -1,0 +1,40 @@
+:root {
+  --background-rgb: 255, 255, 255;
+  --color-text-base: hsl(256, 100%, 50%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  background: rgb(var(--background-rgb));
+  color: var(--color-text-base);
+}
+
+.has-divider-after::after,
+.has-divider-before::before {
+  background-color: currentColor;
+  content: "";
+  display: block;
+  height: 1px;
+  margin: 0 auto;
+  width: calc(100% - 20px);
+}
+
+.title-mega {
+  font-size: clamp(3rem, 15vw, 10rem);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  margin: 0 0 -0.2em 0;
+  max-width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+}

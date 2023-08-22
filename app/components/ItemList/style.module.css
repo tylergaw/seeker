@@ -1,0 +1,33 @@
+.container {
+  --color-background: currentColor;
+  --color-foreground: white;
+  --gap: 10px;
+  --cols: 5;
+  --max-width: 1800;
+  background-color: var(--color-background);
+  box-shadow: inset 0 0 0 calc(var(--gap) / 2) var(--color-foreground);
+  column-count: var(--cols);
+  column-gap: 0;
+  margin: 0 auto;
+  max-width: var(--max-width);
+  overflow: hidden;
+  width: calc(100% - var(--gap));
+}
+
+.item {
+  background-color: var(--color-foreground);
+  break-inside: avoid;
+  box-shadow: 0 0 0 calc(var(--gap) / 2) var(--color-foreground);
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+.item img,
+.item video {
+  border: calc(var(--gap) / 2) solid var(--color-foreground);
+  display: block;
+  grid-row: 1 / -1;
+  grid-column: 1;
+  height: auto;
+  width: 100%;
+}
