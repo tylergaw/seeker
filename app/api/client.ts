@@ -6,11 +6,22 @@ const client = createClient(process.env.PEXELS_API_KEY as string);
 
 type AppItem = {
   appId: string;
+  itemType: "photo" | "video";
 };
 
 export type AppPhoto = Photo & AppItem;
 export type AppVideo = Video & AppItem;
 export type CuratedItems = Array<AppPhoto | AppVideo>;
+
+function getExtendedItem(item: Photo | Video): AppPhoto | AppVideo {
+  const isVideo = Object.hasOwn(item, "video_files");
+
+  return {
+    ...item,
+    appId: `${isVideo ? "v" : "i"}${item.id}`,
+    itemType: isVideo ? "video" : "photo",
+  };
+}
 
 export async function getCurated(
   numPhotos: number = 30,
@@ -24,16 +35,19 @@ export async function getCurated(
   })) as Videos;
   // @ts-ignore - Because it's OK to concat two arrays
   const curatedItems: CuratedItems = shuffle(photos.concat(videos)).map(
-    (item) => {
-      const isVideo = Object.hasOwn(item, "video_files");
-      return {
-        ...item,
-        appId: `${isVideo ? "v" : "i"}${item.id}`,
-      };
-    },
+    (item) => getExtendedItem(item),
   );
 
   return curatedItems;
+}
+
+export async function getItem(id: string): Promise<AppPhoto | AppVideo> {
+  const itemType = id.slice(0, 1);
+  const itemId = id.slice(1, id.length);
+  const clientFunc = itemType === "v" ? "videos" : "photos";
+  const item = await client[clientFunc].show({ id: itemId });
+  // @ts-ignore - TODO: Handle the ErrorResponse case
+  return getExtendedItem(item);
 }
 
 export default client;

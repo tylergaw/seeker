@@ -54,18 +54,16 @@ const ItemList: FC<{ items: CuratedItems }> = ({ items }) => {
   return (
     <div className={styles.container}>
       {items.map((item) => {
-        const isVideo = Object.hasOwn(item, "video_files");
-        const isPhoto = Object.hasOwn(item, "src");
-
+        const { appId, itemType } = item;
         return (
           <Link
             className={styles.item}
-            href={`/${item.appId}`}
-            key={item.appId}
-            aria-label={`View item ${item.appId}`}
+            href={`/${appId}`}
+            key={appId}
+            aria-label={`View item ${appId}`}
           >
-            {isPhoto && <PhotoGraphic photo={item as AppPhoto} />}
-            {isVideo && <VideoGraphic video={item as AppVideo} />}
+            {itemType === "photo" && <PhotoGraphic photo={item as AppPhoto} />}
+            {itemType === "video" && <VideoGraphic video={item as AppVideo} />}
           </Link>
         );
       })}
