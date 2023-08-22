@@ -4,7 +4,13 @@ import { shuffle } from "lodash";
 
 const client = createClient(process.env.PEXELS_API_KEY as string);
 
-type CuratedItems = Array<Photo | Video>;
+type AppItem = {
+  appId: string;
+};
+
+export type AppPhoto = Photo & AppItem;
+export type AppVideo = Video & AppItem;
+export type CuratedItems = Array<AppPhoto | AppVideo>;
 
 export async function getCurated(
   numPhotos: number = 30,
@@ -17,7 +23,15 @@ export async function getCurated(
     per_page: numVideos,
   })) as Videos;
   // @ts-ignore - Because it's OK to concat two arrays
-  const curatedItems: CuratedItems = shuffle(photos.concat(videos));
+  const curatedItems: CuratedItems = shuffle(photos.concat(videos)).map(
+    (item) => {
+      const isVideo = Object.hasOwn(item, "video_files");
+      return {
+        ...item,
+        appId: `${isVideo ? "v" : "i"}${item.id}`,
+      };
+    },
+  );
 
   return curatedItems;
 }
