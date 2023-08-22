@@ -26,12 +26,25 @@ const VideoGraphic: FC<{ video: Video }> = ({ video }) => {
   const sdVideos = video.video_files
     .filter((video) => video.quality === "sd")
     .sort((a, b) => (a.width || 1) - (b.width || 2));
-  const thumb = sdVideos[1];
+  const thumb = sdVideos[0];
   const width = (thumb.width || 350) + random(10, 90);
   const height = (thumb.height || 200) - random(7, 45);
+  const poster = new URL(video.image);
+  // NOTE: We wrap width and height in string literal to convert to to string
+  // because it's needed fro searchParams.set
+  poster.searchParams.set("w", `${width}`);
+  poster.searchParams.set("h", `${height}`);
 
   return (
-    <video autoPlay muted loop playsInline width={width} height={height}>
+    <video
+      autoPlay
+      muted
+      loop
+      playsInline
+      width={width}
+      height={height}
+      poster={poster.toString()}
+    >
       <source src={thumb.link} type={thumb.file_type} />
     </video>
   );
