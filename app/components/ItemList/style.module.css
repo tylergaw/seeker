@@ -9,13 +9,14 @@
   column-count: var(--cols);
   column-gap: 0;
   margin: 0 auto;
+  margin-bottom: calc(var(--gap) / 2);
   max-width: var(--max-width);
   overflow: hidden;
   width: calc(100% - var(--gap));
 }
 
 .item {
-  background-color: var(--color-foreground);
+  background-color: var(--color-background);
   break-inside: avoid;
   box-shadow: 0 0 0 calc(var(--gap) / 2) var(--color-foreground);
   display: grid;
