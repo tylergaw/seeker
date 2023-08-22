@@ -2,19 +2,22 @@
 
 Find your next thing at [hide-and-go-seeker.vercel.app](https://hide-and-go-seeker.vercel.app/).
 
-## Create your own
-
-You can host your own version of this site on Vercel. Note that you will need a valid [Pexels API](https://www.pexels.com/api/) key.
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Ftylergaw%2Fseeker&env=PEXELS_API_KEY&envDescription=Pexels%20API%20key&envLink=https%3A%2F%2Fwww.pexels.com%2Fapi%2F)
-
 ## Technology overview
 
 - This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
+- Pexels API https://www.pexels.com/api/
 - Hosted on Vercel
 - npm preferred (we ignore all other lock files)
 
 ## Local development
+
+**Get and set a Pexels API key**
+
+Create a new Pexels application and get an API key at https://www.pexels.com/api/. Make a copy of `.env.example` named `.env.local`. Set the value of `PEXELS_API_KEY` to your API key.
+
+```
+PEXELS_API_KEY=1234567890
+```
 
 **Install dependencies**
 
@@ -29,6 +32,19 @@ npm run dev
 ```
 
 The site will be available at [http://localhost:3000](http://localhost:3000)
+
+**To build a production bundle**
+
+```bash
+npm run build
+```
+
+**To run a production build locally**
+
+```bash
+npm run build
+npm start
+```
 
 ## Deployment
 

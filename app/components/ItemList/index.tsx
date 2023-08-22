@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import type { Photo, Video } from "pexels";
+import type { AppPhoto, AppVideo, CuratedItems } from "@api/client";
 
 import { memo } from "react";
 import Link from "next/link";
@@ -9,7 +9,7 @@ import { random } from "lodash";
 import { getImgDimensionsFromUrl } from "@util/ui";
 import styles from "./style.module.css";
 
-const PhotoGraphic: FC<{ photo: Photo }> = ({ photo }) => {
+const PhotoGraphic: FC<{ photo: AppPhoto }> = ({ photo }) => {
   const src = photo.src.large;
   const { width = 300, height = 250 } = getImgDimensionsFromUrl(src);
   return (
@@ -22,7 +22,7 @@ const PhotoGraphic: FC<{ photo: Photo }> = ({ photo }) => {
   );
 };
 
-const VideoGraphic: FC<{ video: Video }> = ({ video }) => {
+const VideoGraphic: FC<{ video: AppVideo }> = ({ video }) => {
   const sdVideos = video.video_files
     .filter((video) => video.quality === "sd")
     .sort((a, b) => (a.width || 1) - (b.width || 2));
@@ -50,22 +50,20 @@ const VideoGraphic: FC<{ video: Video }> = ({ video }) => {
   );
 };
 
-const ItemList: FC<{ items: Array<Photo | Video> }> = ({ items }) => {
+const ItemList: FC<{ items: CuratedItems }> = ({ items }) => {
   return (
     <div className={styles.container}>
       {items.map((item) => {
-        const isVideo = Object.hasOwn(item, "video_files");
-        const isPhoto = Object.hasOwn(item, "src");
-
+        const { appId, itemType } = item;
         return (
           <Link
             className={styles.item}
-            href={`/${item.id}`}
-            key={item.id}
-            aria-label={`View item ${item.id}`}
+            href={`/${appId}`}
+            key={appId}
+            aria-label={`View item ${appId}`}
           >
-            {isPhoto && <PhotoGraphic photo={item as Photo} />}
-            {isVideo && <VideoGraphic video={item as Video} />}
+            {itemType === "photo" && <PhotoGraphic photo={item as AppPhoto} />}
+            {itemType === "video" && <VideoGraphic video={item as AppVideo} />}
           </Link>
         );
       })}
