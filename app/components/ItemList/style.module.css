@@ -1,5 +1,5 @@
 .container {
-  --color-background: #a6abab;
+  --color-background: currentColor;
   --color-foreground: white;
   --gap: 10px;
   --cols: 5;
@@ -11,6 +11,7 @@
   margin: 0 auto;
   max-width: var(--max-width);
   overflow: hidden;
+  width: calc(100% - var(--gap));
 }
 
 .item {

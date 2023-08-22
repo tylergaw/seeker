@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import styles from "./style.module.css";
 
 const links = [
   {
@@ -18,7 +19,7 @@ export default function Nav() {
   const pathname = usePathname();
 
   return (
-    <nav>
+    <nav className={`has-divider-after ${styles.container}`}>
       {links.map((link) => {
         const isActive = pathname === link.href;
 

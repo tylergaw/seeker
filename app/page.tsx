@@ -11,7 +11,7 @@ export default async function Curated() {
 
   return (
     <main>
-      <h1>Curated</h1>
+      <h1 className="title-mega">Curated</h1>
       <ItemList items={curatedItems} />
     </main>
   );

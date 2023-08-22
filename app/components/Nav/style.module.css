@@ -1,0 +1,16 @@
+.container {
+  background-color: rgb(var(--background-rgb));
+  position: sticky;
+  text-align: center;
+  top: 0;
+  z-index: 100;
+}
+
+.container a {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-family: sans-serif;
+  padding: 0.25rem 1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
