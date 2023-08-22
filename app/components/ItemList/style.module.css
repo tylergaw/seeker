@@ -16,7 +16,7 @@
 }
 
 .item {
-  background-color: var(--color-foreground);
+  background-color: var(--color-background);
   break-inside: avoid;
   box-shadow: 0 0 0 calc(var(--gap) / 2) var(--color-foreground);
   display: grid;

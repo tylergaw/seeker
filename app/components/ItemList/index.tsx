@@ -1,5 +1,7 @@
 import type { FC } from "react";
 import type { Photo, Video } from "pexels";
+
+import { memo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { random } from "lodash";
@@ -58,4 +60,4 @@ const ItemList: FC<{ items: Array<Photo | Video> }> = ({ items }) => {
   );
 };
 
-export default ItemList;
+export default memo(ItemList);
