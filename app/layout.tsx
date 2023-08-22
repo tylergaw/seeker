@@ -4,7 +4,7 @@ import Nav from "@components/Nav";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Seek",
+  title: "Seeker",
   description: "Find your next thing",
 };
 

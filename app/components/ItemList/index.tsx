@@ -2,30 +2,10 @@ import type { FC } from "react";
 import type { Photo, Video } from "pexels";
 import Link from "next/link";
 import Image from "next/image";
+import { getImgDimensions } from "@util/ui";
 import styles from "./style.module.css";
 
-interface ImgDimensions {
-  height?: number;
-  width?: number;
-}
-
-const getImgDimensions = (url: string): ImgDimensions => {
-  const params = new URL(url).searchParams;
-
-  // Note: The defaults here are magic numbers.
-  const dimensions = {
-    width: parseInt(params.get("w") as string, 10) || 350,
-    height: parseInt(params.get("h") as string, 10) || 350,
-  };
-
-  return dimensions;
-};
-
-interface PhotoImgProps {
-  photo: Photo;
-}
-
-const PhotoImg: FC<PhotoImgProps> = ({ photo }) => {
+const PhotoImg: FC<{ photo: Photo }> = ({ photo }) => {
   const { width, height } = getImgDimensions(photo.src.medium);
   return (
     <Image
@@ -37,22 +17,14 @@ const PhotoImg: FC<PhotoImgProps> = ({ photo }) => {
   );
 };
 
-interface VideoImgProps {
-  video: Video;
-}
-
-const VideoImg: FC<VideoImgProps> = ({ video }) => {
+const VideoImg: FC<{ video: Video }> = ({ video }) => {
   const imgUrl = new URL(video.image);
   imgUrl.searchParams.set("h", "350");
   imgUrl.searchParams.delete("w");
   return <Image src={imgUrl.toString()} alt={""} width={350} height={350} />;
 };
 
-interface ItemListProps {
-  items: Array<Photo | Video>;
-}
-
-const ItemList: FC<ItemListProps> = ({ items }) => {
+const ItemList: FC<{ items: Array<Photo | Video> }> = ({ items }) => {
   return (
     <div className={styles.container}>
       {items.map((item) => {
