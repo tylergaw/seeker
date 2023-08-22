@@ -8,12 +8,11 @@ import { getImgDimensionsFromUrl } from "@util/ui";
 import styles from "./style.module.css";
 
 const PhotoGraphic: FC<{ photo: Photo }> = ({ photo }) => {
-  const { width = 300, height = 250 } = getImgDimensionsFromUrl(
-    photo.src.medium,
-  );
+  const src = photo.src.large;
+  const { width = 300, height = 250 } = getImgDimensionsFromUrl(src);
   return (
     <Image
-      src={photo.src.large}
+      src={src}
       alt={photo.alt || ""}
       width={width - random(15, 75)}
       height={height + random(5, 85)}
