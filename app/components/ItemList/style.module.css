@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.item {
+  flex: 1;
+  min-width: 200px;
+  overflow: hidden;
+}
+
+.item img {
+  display: block;
+  height: auto;
+  width: auto;
+}
