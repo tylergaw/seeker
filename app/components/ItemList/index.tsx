@@ -44,7 +44,12 @@ const ItemList: FC<{ items: Array<Photo | Video> }> = ({ items }) => {
         const isPhoto = Object.hasOwn(item, "src");
 
         return (
-          <Link className={styles.item} href={`/${item.id}`} key={item.id}>
+          <Link
+            className={styles.item}
+            href={`/${item.id}`}
+            key={item.id}
+            aria-label={`View item ${item.id}`}
+          >
             {isPhoto && <PhotoGraphic photo={item as Photo} />}
             {isVideo && <VideoGraphic video={item as Video} />}
           </Link>
