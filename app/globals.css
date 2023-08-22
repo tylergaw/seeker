@@ -17,6 +17,10 @@ body {
   color: var(--color-text-base);
 }
 
+a {
+  color: var(--color-text-base);
+}
+
 .has-divider-after::after,
 .has-divider-before::before {
   background-color: currentColor;
