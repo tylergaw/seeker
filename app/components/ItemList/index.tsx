@@ -53,20 +53,26 @@ const VideoGraphic: FC<{ video: AppVideo }> = ({ video }) => {
 const ItemList: FC<{ items: CuratedItems }> = ({ items }) => {
   return (
     <div className={styles.container}>
-      {items.map((item) => {
-        const { appId, itemType } = item;
-        return (
-          <Link
-            className={styles.item}
-            href={`/${appId}`}
-            key={appId}
-            aria-label={`View item ${appId}`}
-          >
-            {itemType === "photo" && <PhotoGraphic photo={item as AppPhoto} />}
-            {itemType === "video" && <VideoGraphic video={item as AppVideo} />}
-          </Link>
-        );
-      })}
+      <div className={styles.contents}>
+        {items.map((item) => {
+          const { appId, itemType } = item;
+          return (
+            <Link
+              className={styles.item}
+              href={`/${appId}`}
+              key={appId}
+              aria-label={`View item ${appId}`}
+            >
+              {itemType === "photo" && (
+                <PhotoGraphic photo={item as AppPhoto} />
+              )}
+              {itemType === "video" && (
+                <VideoGraphic video={item as AppVideo} />
+              )}
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 };
