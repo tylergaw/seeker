@@ -42,7 +42,6 @@ npm run build
 **To run a production build locally**
 
 ```bash
-npm run build
 npm start
 ```
 
@@ -50,7 +49,7 @@ npm start
 
 Hosted on Vercel. All code merged into `main` is deployed to production.
 
-All pull requests automatically have a preview deploy created.
+All pull requests automatically have a preview deploy created. Check the PR for the URL.
 
 ## Code formatting
 
