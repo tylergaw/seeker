@@ -31,13 +31,13 @@ const VideoGraphic: FC<{ video: AppVideo }> = ({ video }) => {
   const height = (thumb.height || 200) - random(7, 45);
   const poster = new URL(video.image);
   // NOTE: We wrap width and height in string literal to convert to to string
-  // because it's needed fro searchParams.set
+  // because it's needed for searchParams.set
   poster.searchParams.set("w", `${width}`);
   poster.searchParams.set("h", `${height}`);
 
   return (
     <video
-      autoPlay
+      autoPlay={true}
       muted
       loop
       playsInline
@@ -53,20 +53,26 @@ const VideoGraphic: FC<{ video: AppVideo }> = ({ video }) => {
 const ItemList: FC<{ items: CuratedItems }> = ({ items }) => {
   return (
     <div className={styles.container}>
-      {items.map((item) => {
-        const { appId, itemType } = item;
-        return (
-          <Link
-            className={styles.item}
-            href={`/${appId}`}
-            key={appId}
-            aria-label={`View item ${appId}`}
-          >
-            {itemType === "photo" && <PhotoGraphic photo={item as AppPhoto} />}
-            {itemType === "video" && <VideoGraphic video={item as AppVideo} />}
-          </Link>
-        );
-      })}
+      <div className={styles.contents}>
+        {items.map((item) => {
+          const { appId, itemType } = item;
+          return (
+            <Link
+              className={styles.item}
+              href={`/${appId}`}
+              key={appId}
+              aria-label={`View item ${appId}`}
+            >
+              {itemType === "photo" && (
+                <PhotoGraphic photo={item as AppPhoto} />
+              )}
+              {itemType === "video" && (
+                <VideoGraphic video={item as AppVideo} />
+              )}
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 };

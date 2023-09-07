@@ -1,11 +1,11 @@
 {
-  "name": "next-project-1",
-  "version": "0.1.0",
+  "name": "seeker",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next build && next start",
     "lint": "next lint",
     "prettier": "prettier . --write",
     "prepare": "husky install"
@@ -25,6 +25,7 @@
     "pexels": "1.4.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "sharp": "0.32.5",
     "typescript": "5.1.6"
   },
   "devDependencies": {
