@@ -37,7 +37,7 @@ const VideoGraphic: FC<{ video: AppVideo }> = ({ video }) => {
 
   return (
     <video
-      autoPlay
+      autoPlay={true}
       muted
       loop
       playsInline
