@@ -31,7 +31,7 @@ const VideoGraphic: FC<{ video: AppVideo }> = ({ video }) => {
   const height = (thumb.height || 200) - random(7, 45);
   const poster = new URL(video.image);
   // NOTE: We wrap width and height in string literal to convert to to string
-  // because it's needed fro searchParams.set
+  // because it's needed for searchParams.set
   poster.searchParams.set("w", `${width}`);
   poster.searchParams.set("h", `${height}`);
 
