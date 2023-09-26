@@ -1,5 +1,8 @@
 # Seeker
 
+> [!NOTE]
+> This was an interview process take home, not a real thing.
+
 Find your next thing at [hide-and-go-seeker.vercel.app](https://hide-and-go-seeker.vercel.app/).
 
 ## Technology overview
